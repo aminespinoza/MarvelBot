@@ -22,7 +22,7 @@ namespace MarvelBot.Models.Parameters
 
         //{section}?apikey={publicKey}&ts={timestamp}&hash={hash}
         [Query("apikey")]
-        public string ApiKey { get; set; }
+        public string ApiKey => _publicKey;
 
         [Query("ts")]
         public int TimeStamp { get; set; }

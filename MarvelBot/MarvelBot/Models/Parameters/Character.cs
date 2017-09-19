@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MarvelBot.Models.Parameters
+﻿namespace MarvelBot.Models.Parameters
 {
-    public class Character
+    public class Character : Parameter
     {
+        public Character(string privateKey, string publicKey) : base(privateKey, publicKey)
+        {
+        }
+
+        [Query("name")]
+        public string Name { get; set; }
     }
 }

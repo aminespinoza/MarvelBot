@@ -31,8 +31,8 @@ namespace MarvelBot.Classes
 
         public static string FirstPathBuilder(string section, string queryValue, params string[] parameters)
         {
-            const string privateKey = "tu llave privada";
-            const string publicKey = "tu llave pública";
+            const string privateKey = "09c326ff82445b6fe6349c8878e147074dfa82e0";
+            const string publicKey = "c820e1a0b6ea770d99b249fa9ec34adb";
             const string timestamp = "9";
             var hash = HashGenerator(privateKey, publicKey, timestamp);
 

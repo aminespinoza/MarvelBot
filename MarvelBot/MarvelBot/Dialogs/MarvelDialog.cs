@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MarvelBot.Models.Responses;
 
 namespace MarvelBot.Dialogs
 {
@@ -28,24 +29,26 @@ namespace MarvelBot.Dialogs
             HttpClient request = new HttpClient();
             var responseString = await request.GetStringAsync(basicUrl);
 
-            var serializedEntity = JsonConvert.DeserializeObject<Rootobject>(responseString);
-            string name = serializedEntity.data.results[0].name;
-            string content = serializedEntity.data.results[0].description;
-            var thumbnail = serializedEntity.data.results[0].thumbnail;
+            var serializedEntity = JsonConvert.DeserializeObject<Response<Character>>(responseString);
+            string name = serializedEntity.Data.Results[0].Name;
+            string content = serializedEntity.Data.Results[0].Description;
+            var thumbnail = serializedEntity.Data.Results[0].Thumbnail;
 
 
             try
             {
                 var reply = activity.CreateReply();
-                reply.Attachments = new List<Attachment>();
-
-                reply.Attachments.Add(new Attachment
+                reply.Attachments = new List<Attachment>
                 {
-                    Name = name,
-                    Content = content,
-                    ContentUrl = Helpers.ImagePathBuilder(thumbnail.path, thumbnail.extension, "portrait_uncanny"),
-                    ContentType = "image/jpg"
-                });
+                    new Attachment
+                    {
+                        Name = name,
+                        Content = content,
+                        ContentUrl = Helpers.ImagePathBuilder(thumbnail.Path, thumbnail.Extension, "portrait_uncanny"),
+                        ContentType = "image/jpg"
+                    }
+                };
+
 
 
                 await context.PostAsync(reply);

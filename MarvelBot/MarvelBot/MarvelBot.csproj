@@ -118,7 +118,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Parameters\Character.cs" />
+    <Compile Include="Models\Responses\Character.cs" />
+    <Compile Include="Models\Responses\Data.cs" />
+    <Compile Include="Models\Responses\ItemBase.cs" />
+    <Compile Include="Models\Responses\Response.cs" />
+    <Compile Include="Models\Responses\Thumbnail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,50 +9,74 @@ namespace MarvelBot.Classes
 {
     public static class Helpers
     {
+        //public static string FirstPathBuilder(string section, string queryValue, params string[] parameters)
+        //{
+        //    const string privateKey = "tu llave privada";
+        //    const string publicKey = "tu llave pública";
+        //    const string timestamp = "9";
+        //    string hash = HashGenerator(privateKey, publicKey, timestamp);
+
+        //    StringBuilder queryBuilder = new StringBuilder("http://gateway.marvel.com/v1/public/");
+        //    queryBuilder.Append(section + "?");
+        //    queryBuilder.Append("apikey=" + publicKey);
+        //    queryBuilder.Append("&ts=" + timestamp);
+        //    queryBuilder.Append("&hash=" + hash);
+        //    foreach (string parameter in parameters)
+        //    {
+        //        queryBuilder.Append("&" + parameter);
+        //    }
+
+        //    return queryBuilder.ToString();
+        //}
+
         public static string FirstPathBuilder(string section, string queryValue, params string[] parameters)
         {
             const string privateKey = "tu llave privada";
             const string publicKey = "tu llave pública";
             const string timestamp = "9";
-            string hash = HashGenerator(privateKey, publicKey, timestamp);
+            var hash = HashGenerator(privateKey, publicKey, timestamp);
 
-            StringBuilder queryBuilder = new StringBuilder("http://gateway.marvel.com/v1/public/");
-            queryBuilder.Append(section + "?");
-            queryBuilder.Append("apikey=" + publicKey);
-            queryBuilder.Append("&ts=" + timestamp);
-            queryBuilder.Append("&hash=" + hash);
-            foreach (string parameter in parameters)
-            {
-                queryBuilder.Append("&" + parameter);
-            }
-
-            return queryBuilder.ToString();
+            return parameters.Aggregate(new StringBuilder(
+                $"http://gateway.marvel.com/v1/public/{section}?apikey={publicKey}&ts={timestamp}&hash={hash}"),
+                (sb, p) => sb.Append($"&{p}")).ToString();
         }
 
-        private static string HashGenerator(string privateKey, string publicKey, string timestamp)
-        {
-            StringBuilder hash = new StringBuilder();
-            string finalQuery = timestamp + privateKey + publicKey;
+        //private static string HashGenerator(string privateKey, string publicKey, string timestamp)
+        //{
+        //    StringBuilder hash = new StringBuilder();
+        //    string finalQuery = timestamp + privateKey + publicKey;
 
-            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
-            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(finalQuery));
+        //    MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+        //    byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(finalQuery));
 
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                hash.Append(bytes[i].ToString("x2"));
-            }
+        //    for (int i = 0; i < bytes.Length; i++)
+        //    {
+        //        hash.Append(bytes[i].ToString("x2"));
+        //    }
 
-            return hash.ToString();
-        }
+        //    return hash.ToString();
+        //}
 
-        public static string ImagePathBuilder(string path, string extension, string imageFormat)
-        {
-            StringBuilder imageBuilder = new StringBuilder();
-            imageBuilder.Append(path);
-            imageBuilder.Append("/" + imageFormat);
-            imageBuilder.Append("." + extension);
+        private static string HashGenerator(string privateKey, string publicKey, string timestamp) => 
+            new MD5CryptoServiceProvider()
+                .ComputeHash(new UTF8Encoding().GetBytes(timestamp + privateKey + publicKey))
+                .Aggregate(new StringBuilder(), (sb, b) => sb.Append(b.ToString("x2")))
+                .ToString();
 
-            return imageBuilder.ToString();
-        }
+        //public static string ImagePathBuilder(string path, string extension, string imageFormat)
+        //{
+        //    StringBuilder imageBuilder = new StringBuilder();
+        //    imageBuilder.Append(path);
+        //    imageBuilder.Append("/" + imageFormat);
+        //    imageBuilder.Append("." + extension);
+
+        //    return imageBuilder.ToString();
+        //}
+
+        //public static string ImagePathBuilder(string path, string extension, string imageFormat) =>
+        //    path + "/" + imageFormat + "." + extension;
+
+        public static string ImagePathBuilder(string path, string extension, string imageFormat) =>
+           $"{path}/{imageFormat}.{extension}";
     }
 }

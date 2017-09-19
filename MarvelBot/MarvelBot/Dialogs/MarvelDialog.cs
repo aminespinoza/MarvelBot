@@ -51,32 +51,20 @@ namespace MarvelBot.Dialogs
             string content = serializedEntity.Data.Results[0].Description;
             var thumbnail = serializedEntity.Data.Results[0].Thumbnail;
 
+            var reply = activity.CreateReply();
 
-            try
+            HeroCard myCard = new HeroCard()
             {
-                var reply = activity.CreateReply();
-                reply.Attachments = new List<Attachment>
-                {
-                    new Attachment
-                    {
-                        Name = name,
-                        Content = content,
-                        ContentUrl = Helpers.ImagePathBuilder(thumbnail.Path, thumbnail.Extension, "portrait_uncanny"),
-                        ContentType = "image/jpg"
-                    }
-                };
+                Title = name,
+                Subtitle = content
+            };
+            List<CardImage> imageList = new List<CardImage>();
+            CardImage characterImage = new CardImage(Helpers.ImagePathBuilder(thumbnail.Path, thumbnail.Extension, "portrait_uncanny"));
+            imageList.Add(characterImage);
+            myCard.Images = imageList;
+            reply.Attachments.Add(myCard.ToAttachment());
 
-
-
-                await context.PostAsync(reply);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
+            await context.PostAsync(reply);
             context.Wait(MessageReceivedAsync);
         }
     }

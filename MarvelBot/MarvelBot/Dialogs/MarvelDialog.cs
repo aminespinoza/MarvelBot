@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MarvelBot.Models.Responses;
-using MarvelBot.Properties;
-using CharacterParam = MarvelBot.Models.Parameters.Character;
 
 namespace MarvelBot.Dialogs
 {
@@ -27,22 +25,7 @@ namespace MarvelBot.Dialogs
         {
             var activity = await result as Activity;
             string newCharacter = activity.Text;
-            //string basicUrl = Helpers.FirstPathBuilder("characters", "9", "name=" + newCharacter);
-
-            var parameters = new CharacterParam(Resources.PrivateKey, Resources.PublicKey)
-            {
-                Name = newCharacter,
-                TimeStamp = 1
-            };
-
-            var section = "characters";
-            //https://stackoverflow.com/a/14517976/294804
-            var uriBuilder = new UriBuilder($"http://gateway.marvel.com/v1/public/{section}")
-            {
-                Query = parameters.ToString()
-            };
-            var basicUrl = uriBuilder.ToString();
-
+            string basicUrl = Helpers.FirstPathBuilder("characters", "9", "name=" + newCharacter);
             HttpClient request = new HttpClient();
             var responseString = await request.GetStringAsync(basicUrl);
 
@@ -58,6 +41,7 @@ namespace MarvelBot.Dialogs
                 Title = name,
                 Subtitle = content
             };
+
             List<CardImage> imageList = new List<CardImage>();
             CardImage characterImage = new CardImage(Helpers.ImagePathBuilder(thumbnail.Path, thumbnail.Extension, "portrait_uncanny"));
             imageList.Add(characterImage);

@@ -1,6 +1,4 @@
-﻿using MarvelBot.Classes;
-using MarvelBot.Models;
-using Microsoft.Bot.Builder.Dialogs;
+﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
 using System;

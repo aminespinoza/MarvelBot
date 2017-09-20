@@ -9,5 +9,8 @@ namespace MarvelBot.Models.Responses
 
         [JsonProperty("extension")]
         public string Extension { get; set; }
+
+        public string CreatePath(string format) =>
+            $"{Path}/{format}.{Extension}";
     }
 }

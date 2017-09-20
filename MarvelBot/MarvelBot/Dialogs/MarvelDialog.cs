@@ -59,7 +59,7 @@ namespace MarvelBot.Dialogs
             };
 
             List<CardImage> imageList = new List<CardImage>();
-            CardImage characterImage = new CardImage(Helpers.ImagePathBuilder(thumbnail.Path, thumbnail.Extension, "portrait_uncanny"));
+            CardImage characterImage = new CardImage(thumbnail.CreatePath("portrait_uncanny"));
             imageList.Add(characterImage);
             myCard.Images = imageList;
             reply.Attachments.Add(myCard.ToAttachment());

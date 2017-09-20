@@ -61,7 +61,7 @@ namespace MarvelBot.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 09c326ff82445b6fe6349c8878e147074dfa82e0.
+        ///   Looks up a localized string similar to fd5a102930d3cf34327f729ab2d943d00a46396b.
         /// </summary>
         internal static string PrivateKey {
             get {
@@ -70,7 +70,7 @@ namespace MarvelBot.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c820e1a0b6ea770d99b249fa9ec34adb.
+        ///   Looks up a localized string similar to e2d50af935a933719c310348df1b0eb2.
         /// </summary>
         internal static string PublicKey {
             get {

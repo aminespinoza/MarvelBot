@@ -115,6 +115,7 @@
     <Compile Include="Classes\Helpers.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\MarvelDialog.cs" />
+    <Compile Include="Extensions\HashAlgorithmExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

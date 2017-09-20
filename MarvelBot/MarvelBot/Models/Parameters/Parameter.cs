@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarvelBot.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,25 +13,24 @@ namespace MarvelBot.Models.Parameters
     public class Parameter
     {
         private readonly string _privateKey;
-        private readonly string _publicKey;
 
-        public Parameter(string privateKey, string publicKey)
+        public Parameter(string privateKey, string publicKey, string timeStamp = null)
         {
             _privateKey = privateKey;
-            _publicKey = publicKey;
+            ApiKey = publicKey;
+            TimeStamp = timeStamp ?? DateTime.Now.ToString("yyyyMMddHHmmss");
         }
 
-        //{section}?apikey={publicKey}&ts={timestamp}&hash={hash}
         [Query("apikey")]
-        public string ApiKey => _publicKey;
+        public string ApiKey { get; }
 
         [Query("ts")]
-        public int TimeStamp { get; set; }
+        public string TimeStamp { get; }
 
         [Query("hash")]
         public string Hash => 
             new MD5CryptoServiceProvider()
-                .ComputeHash(new UTF8Encoding().GetBytes(String.Join(String.Empty, TimeStamp, _privateKey, _publicKey)))
+                .ComputeHash(String.Join(String.Empty, TimeStamp, _privateKey, ApiKey))
                 .Select(b => b.ToString("x2"))
                 .Aggregate(new StringBuilder(), (sb, s) => sb.Append(s))
                 .ToString();

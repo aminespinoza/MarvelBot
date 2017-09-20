@@ -27,12 +27,11 @@ namespace MarvelBot.Dialogs
         {
             var activity = await result as Activity;
             string newCharacter = activity.Text;
-            //string basicUrl = Helpers.FirstPathBuilder("characters", "9", "name=" + newCharacter);
 
+            //https://stackoverflow.com/a/5788920/294804
             var parameters = new CharacterParam(Resources.PrivateKey, Resources.PublicKey)
             {
-                Name = newCharacter,
-                TimeStamp = 1
+                Name = newCharacter
             };
 
             var section = "characters";

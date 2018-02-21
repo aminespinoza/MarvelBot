@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PrivateKey" xml:space="preserve">
-    <value />
+    <value>09c326ff82445b6fe6349c8878e147074dfa82e0</value>
   </data>
   <data name="PublicKey" xml:space="preserve">
-    <value />
+    <value>c820e1a0b6ea770d99b249fa9ec34adb</value>
   </data>
 </root>

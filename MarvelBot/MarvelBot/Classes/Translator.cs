@@ -9,7 +9,7 @@ namespace MarvelBot.Classes
         public async static Task<string> GetDesiredLanguageAsync(string content)
         {
             HttpClient languageClient = new HttpClient();
-            languageClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "(tu llave de servicio)");
+            languageClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "45474d57d06346679d2c66648a76f175");
             var detectLanguageResponse = await languageClient.GetStreamAsync(
                 $"http://api.microsofttranslator.com/v2/http.svc/Detect?text={content}");
 
@@ -19,7 +19,7 @@ namespace MarvelBot.Classes
         public async static Task<string> TranslateSentenceAsync(string originalSentence, string languageCode)
         {
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "(tu llave del servicio)");
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "45474d57d06346679d2c66648a76f175");
             var translatedResponse = await client.GetStreamAsync(
                 $"http://api.microsofttranslator.com/v2/http.svc/translate?text={originalSentence}&from=en&to={languageCode}&category=general"
                 );

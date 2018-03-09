@@ -1,14 +1,14 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
+﻿using MarvelBot.Classes;
+using MarvelBot.Models.Responses;
+using MarvelBot.Properties;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using MarvelBot.Models.Responses;
-using MarvelBot.Properties;
 using CharacterParam = MarvelBot.Models.Parameters.Character;
-using MarvelBot.Classes;
 
 namespace MarvelBot.Dialogs
 {

@@ -118,7 +118,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Translator.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Dialogs\CharacterDialog.cs" />
+    <Compile Include="Dialogs\ComicsDialog.cs" />
     <Compile Include="Dialogs\MarvelDialog.cs" />
+    <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="Dialogs\SeriesDialog.cs" />
+    <Compile Include="Dialogs\TranslateDialog.cs" />
     <Compile Include="Extensions\HashAlgorithmExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
